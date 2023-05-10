@@ -4,6 +4,7 @@ const restaurants_1 = require("./restaurants");
 const dollarSigns = "$$";
 const deliveryTimeMax = 90;
 const maxDistance = 10;
+let hour = new Date().getHours();
 let result;
 const priceBracket = dollarSigns.length;
 const filteredRestaurants = restaurants_1.default.filter((restaurant) => {
@@ -14,6 +15,9 @@ const filteredRestaurants = restaurants_1.default.filter((restaurant) => {
         return false;
     }
     if (restaurant.distance > maxDistance) {
+        return false;
+    }
+    if (restaurant.openHour < hour || restaurant.closeHour > hour) {
         return false;
     }
     return restaurant;
